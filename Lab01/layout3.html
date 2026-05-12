@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="uk">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Назва сторінки</title>
+  </head>
+
+  <body style="width: 920px; position: absolute">
+    <header style="text-align: center;">
+        <b style="font-size: larger; color: blue;">ТехноСтоп&emsp;&emsp;</b>
+        <nav style="display: inline;">
+            <a href="/">Головна</a>
+            <a href="/">Статті</a>
+            <a href="/">Про нас</a>
+            <a href="/">Контакти</a>
+            <a href="/">Подкаст</a>
+            &emsp;&emsp;
+        </nav>
+        <button onclick="'window.location.href=/'" style="display: inline;">Увійти</button>
+    </header>
+
+    <hr>
+
+    <aside style="float: right; background-color: lightgray; position: relative; width: 170px;">
+        <h3>Схожі статті</h3>
+        <a href="/">DevTools cheatsheet</a>
+        <hr>
+        <a href="/">10 трюків Console</a>
+        <hr>
+        <a href="/">Як читати Network</a>
+    </aside>
+
+    <aside style="float: right; background-color: lightgray; position: relative; width: 170px;">
+        <h3>Схожі статті</h3>
+        <a href="/">DevTools cheatsheet</a>
+        <hr>
+        <a href="/">10 трюків Console</a>
+        <hr>
+        <a href="/">Як читати Network</a>
+    </aside>
+
+    <main>
+        <img src="error.png" alt="Скриншот консолі браузера з підсвіченою помилкою" width="400" height="160">
+
+        <article>
+            <h1>Як читати помилки браузера: помилки браузера: гайд для першокурсника</h1>
+            <p>Стек-трейси перестануть лякати, якщо знати, з чого вони складаються</p>
+            <p>11 травня 2026 · автор: Олена Петренко · 7 хв читання</p>
+
+            <section>
+                <h2>1. DevTools - це не страшно</h2>
+                <hr>
+                <p>
+                    Перше, з чим стикається кожен веб-розробник — це
+                    панель розробника. Натискаєш F12, і відкривається
+                    інший світ. У цьому розділі ми пройдемось по
+                    найкорисніших вкладках і навчимось бачити те, що
+                    бачить браузер.
+                </p>
+                <p>
+                    Особлива увага — вкладці Console. Саме там
+                    з'являються повідомлення про помилки в
+                    JavaScript. Кожне повідомлення має певну
+                    структуру, і коли ви її розумієте, лагодження стає
+                    просто крок за кроком.
+
+                </p>
+            </section>
+
+            <section>
+                <h2>2. Анатомія помилки</h2>
+                <hr>
+                <p>
+                    Типове повідомлення про помилку складається з
+                    кількох частин:
+                </p>
+                <ul>
+                    <li>Тип помилки (TypeError, ReferenceError, SyntaxError тощо)</li>
+                    <li>Опис проблеми у людських словах</li>
+                    <li>Стек-трейс — ланцюжок викликів, що привів до помилки</li>
+                    <li>Посилання на конкретний файл і рядок</li>
+                </ul>
+            </section>
+
+            <section>
+                <h2>3. Найчастіші помилки початківця</h2>
+                <hr>
+                <p>
+                    Нижче — таблиця з помилками, які зустрічаються у 90% домашніх завдань першокурсників:
+                </p>
+                <table>
+                    <tr style="background-color: lightgray;">
+                        <th>Тип</th>
+                        <th>Що означає</th>
+                        <th>Як виправити</th>
+                    </tr>
+                    <tr>
+                        <td>ReferenceError</td>
+                        <td>Звертаєтесь до неіснуючої змінної</td>
+                        <td>Перевірте написання, область видимості</td>
+                    </tr>
+                    <tr>
+                        <td>TypeError</td>
+                        <td>Операція над неправильним типом</td>
+                        <td>Подивіться, що саме у змінній на момент виклику</td>
+                    </tr>
+                    <tr>
+                        <td>SyntaxError</td>
+                        <td>Помилка у синтаксисі JS</td>
+                        <td>Запустіть код через лінтер</td>
+                    </tr>
+                    <tr>
+                        <td>404</td>
+                        <td>Файл/ресурс не знайдено</td>
+                        <td>Перевірте шлях у Network вкладці</td>
+                    </tr>
+                </table>
+                <blockquote style="border-left: 5px solid navy; padding-left: 15px; font-style:italic; background-color: lightgray;">
+                    «Помилка — це не покарання, це підказка.
+                    Браузер каже вам, у якому саме рядку він не
+                    зміг продовжити роботу. Це
+                    найкоштовніша інформація, яку ви можете
+                    отримати.» — Іван Коваль, ментор курсу
+                </blockquote>
+
+                <p>
+                    Звикайте відкривати консоль на кожному сайті,
+                    який ви будуєте. З досвідом стек-трейси стануть для
+                    вас читабельними так само, як ця стаття.
+                </p>
+
+            </section>
+        </article>
+    </main>
+
+
+    <footer style="text-align: center;">
+        <pre style="background-color: lightgray; padding: 15px";>
+    <b>ТехноСтоп</b> · 2026    Контакти: hello@technostop.ua    <a href="/">Telegram</a> <a href="/">YouTube</a> <a href="/">GitHub</a> <a href="/">Twitter</a>
+        </pre>
+    </footer>
+  </body>
+</html>
