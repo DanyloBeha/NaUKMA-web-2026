@@ -18,7 +18,7 @@
                         <label>
                             <input type="text" name="item" placeholder="Назва товару">
                         </label>
-                        <button id="addButton">Додати</button>
+                        <button id="addButton" data-toolpit="Додати товар до списку">Додати</button>
                     </form>
                 </div>
 
@@ -30,7 +30,7 @@
                         <span class="menuAmount">2</span>
                     </div>
                     <div class="endBtn">
-                        <button class="buyButton">Не куплено</button>
+                        <button class="buyButton" data-toolpit="Позначити, як не куплене">Не куплено</button>
                     </div>
                 </div>
 
@@ -39,28 +39,28 @@
                 <div class="container-menu-line">
                     <span class="menuItemName">Печиво</span>
                     <div class="middleBtn">
-                        <button class="roundButton minusButton">-</button>
+                        <button class="roundButton minusButton" data-toolpit="Зменшити кількість">-</button>
                         <span class="menuAmount">2</span>
-                        <button class="roundButton plusButton">+</button>
+                        <button class="roundButton plusButton" data-toolpit="Збільшити кількість">+</button>
                     </div>
                     <div class="endBtn">
-                        <button class="buyButton">Куплено</button>
-                        <button class="delButton">✖</button>
+                        <button class="buyButton" data-toolpit="Позначити, як куплене">Куплено</button>
+                        <button class="delButton" data-toolpit="Вилучити позицію">✖</button>
                     </div>
                 </div>
 
                 <hr>
 
                 <div class="container-menu-line">
-                    <span class="menuItemName">Cир</span>
+                    <span class="menuItemName" id="inEdit">Cир</span>
                     <div class="middleBtn">
-                        <button class="roundButton minusButton">-</button>
+                        <button class="roundButton minusButton" data-toolpit="Зменшити кількість">-</button>
                         <span class="menuAmount">1</span>
-                        <button class="roundButton plusButton">+</button>
+                        <button class="roundButton plusButton" data-toolpit="Збільшити кількість">+</button>
                     </div>
                     <div class="endBtn">
-                        <button class="buyButton">Куплено</button>
-                        <button class="delButton">✖</button>
+                        <button class="buyButton" data-toolpit="Позначити, як куплене">Куплено</button>
+                        <button class="delButton" data-toolpit="Вилучити позицію">✖</button>
                     </div>
                 </div>
             </div>
@@ -89,6 +89,13 @@
             </div>
         </div>
 
+        <div class="badge">
+            <h2>Buy list</h2>
+            <div id="labelName">
+                <p id="label">Created by:</p>
+                <p id="name">Danylo Beha</p>
+            </div>
+        </div>
 
 
     </body>
