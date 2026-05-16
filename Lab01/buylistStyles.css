@@ -15,6 +15,7 @@ body {
     color: rgb(80, 80, 80);
     margin-top: 10px;
     margin-bottom: 10px;
+    line-height: 30px;
 }
 
 .amount {
@@ -36,7 +37,7 @@ body {
     box-shadow: 5px 5px 5px gray;
     padding: 15px;
     align-self: flex-start;
-    width: 550px;
+    width: auto;
 }
 
 .container-list {
@@ -44,13 +45,12 @@ body {
     width: 300px;
     border-radius: 5px;
     padding: 10px;
-    margin-left: 20px;
     box-shadow: 5px 5px 5px gray;
 }
 
 .container {
     display: flex;
-    flex-direction: row;
+    gap: 20px;
 }
 
 .container-menu-line {
@@ -60,10 +60,11 @@ body {
 
 form {
     display: inline-flex;
+    width: 100%;
 }
 
 input {
-    width: 450px;
+    width: 100%;
     padding: 8px;
     border-top-right-radius: 0px;
     border-top-left-radius: 5px;
@@ -162,4 +163,93 @@ input {
 .container-list h2 {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.badge {
+    background-color: blueviolet;
+    color: white;
+    position: fixed;
+    height: 100px;
+    bottom: -75px;
+    left: 50px;
+    border-top-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 15px;
+    transition: all 0.25s ease;
+}
+
+.badge:hover {
+    bottom: 0px;
+    background-color: violet;
+}
+
+.badge h2 {
+    margin-top: 0px;
+}
+
+#label {
+    margin-bottom: -18px;
+}
+
+#name {
+    font-size: larger;
+    font-weight: 600;
+}
+
+#inEdit {
+    border: 1px solid lightblue;
+    border-radius: 2px;
+    padding: 4px;
+    box-shadow: 0 0 5px lightblue;
+}
+
+button {
+    position: relative;
+}
+
+button::after {
+    content: attr(data-toolpit);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transform-origin: bottom center;
+    background-color: blueviolet;
+    color: white;
+    padding: 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    font-size: 13px;
+    opacity: 0;
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+button:hover::after {
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+}
+
+@media (width < 650px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+@media print {
+    .badge {
+        background-color: white;
+        color: black;
+        border: 2px solid blueviolet;
+        padding-top: 0px;
+        bottom: -50px;
+    }
+
+    .badge h2 {
+        display: none;
+    }
+
+    #labelName {
+        color: black;
+    }
 }
