@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="uk">
 
     <head>
         <meta charset="UTF-8">
@@ -10,10 +10,87 @@
     </head>
 
     <body>
-        <span class="item">
-            Item example
-            <span class="amount">1</span>
-        </span>
+        <div class="container">
+
+            <div class="container-menu">
+                <div class="container-menu-line">
+                    <form>
+                        <label>
+                            <input type="text" name="item" placeholder="Назва товару">
+                        </label>
+                        <button id="addButton">Додати</button>
+                    </form>
+                </div>
+
+                <hr>
+
+                <div class="container-menu-line">
+                    <span class="menuItemName"><s>Помідори</s></span>
+                    <div class="middleBtn">
+                        <span class="menuAmount">2</span>
+                    </div>
+                    <div class="endBtn">
+                        <button class="buyButton">Не куплено</button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="container-menu-line">
+                    <span class="menuItemName">Печиво</span>
+                    <div class="middleBtn">
+                        <button class="roundButton minusButton">-</button>
+                        <span class="menuAmount">2</span>
+                        <button class="roundButton plusButton">+</button>
+                    </div>
+                    <div class="endBtn">
+                        <button class="buyButton">Куплено</button>
+                        <button class="delButton">✖</button>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="container-menu-line">
+                    <span class="menuItemName">Cир</span>
+                    <div class="middleBtn">
+                        <button class="roundButton minusButton">-</button>
+                        <span class="menuAmount">1</span>
+                        <button class="roundButton plusButton">+</button>
+                    </div>
+                    <div class="endBtn">
+                        <button class="buyButton">Куплено</button>
+                        <button class="delButton">✖</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container-list">
+                <h2>Залишилося</h2>
+
+                <hr>
+
+                <span class="item">Печиво
+                    <span class="amount">2</span>
+                </span>
+                <span class="item">Сир
+                    <span class="amount">1</span>
+                </span>
+
+                <hr>
+
+                <h2>Куплено</h2>
+
+                <hr>
+
+                <span class="item">Помідори
+                    <span class="amount">2</span>
+                </span>
+            </div>
+        </div>
+
+
+
     </body>
 
 
