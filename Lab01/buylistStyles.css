@@ -1,20 +1,165 @@
+body {
+    background-color: lightgray;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
 .item {
     background-color: lightgrey;
     display: inline-block;
-    font-family: Arial, Helvetica, sans-serif;
-    height: 20px;
+    height: 30px;
+    text-align: center;
+    align-self: center;
     padding: 5px;
     border-radius: 5px;
+    font-weight: bold;
+    color: rgb(80, 80, 80);
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 .amount {
-    background-color: orange;
+    background-color: rgb(255, 106, 0);
     color: white;
-    font-family: Arial, Helvetica, sans-serif;
     border-radius: 50%;
+    display: inline-block;
+    height: 15px;
+    line-height: 15px;
+    width: 15px;
+    padding: 5px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.container-menu {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 5px 5px 5px gray;
+    padding: 15px;
+    align-self: flex-start;
+    width: 550px;
+}
+
+.container-list {
+    background-color: white;
+    width: 300px;
+    border-radius: 5px;
+    padding: 10px;
+    margin-left: 20px;
+    box-shadow: 5px 5px 5px gray;
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+}
+
+.container-menu-line {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+form {
+    display: inline-flex;
+}
+
+input {
+    width: 450px;
+    padding: 8px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 5px;
+    border-bottom-right-radius: 0px;
+    border-bottom-left-radius: 5px;
+    border-width: 1px;
+    height: 40px;
+    box-sizing: border-box;
+    border-color: lightgray;
+}
+
+#addButton {
+    background-color: rgb(0, 129, 209);
+    color: white;
+    border: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    padding: 10px;
+    width: 100px;
+    height: 40px;
+    font-weight: bold
+}
+
+.menuAmount {
+    background-color: lightgrey;
     display: inline-block;
     height: 20px;
     width: 20px;
+    border-radius: 5px;
     text-align: center;
-    
+    padding: 3px;
+    color: rgb(71, 71, 71);
+}
+
+.buyButton {
+    background-color: lightgray;
+    border-radius: 5px;
+    border: 1px;
+    border-style: solid;
+    border-color: rgb(175, 175, 175);
+    width: 90px;
+    height: 30px;
+    text-align: center;
+    font-weight: bold;
+    color: rgb(71, 71, 71);
+    box-shadow: 0 4px 0px rgb(175, 175, 175);
+}
+
+.delButton {
+    background-color: rgb(219, 0, 0);
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 0px;
+    border: 0px;
+    color: white;
+    box-shadow: 0 4px 0px darkred;
+}
+
+.roundButton {
+    font-size: x-large;
+    display: inline-block;
+    height: 30px;
+    width: 30px;
+    padding-bottom: 8px;
+    border-radius: 15px;
+    text-align: center;
+    border: 0px;
+    color: white;
+}
+
+.minusButton {
+    background-color: rgb(219, 0, 0);
+    box-shadow: 0 3px 0px darkred;
+}
+
+.plusButton {
+    background-color: rgb(29, 189, 29);
+    box-shadow: 0 3px 0px darkgreen;
+}
+
+.menuItemName {
+    align-self: center;
+}
+
+.endBtn {
+    margin-left: auto;
+}
+
+.middleBtn {
+    justify-self: center;
+}
+
+.container-list h2 {
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
