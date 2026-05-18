@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Олена Петренко — візитка</title>
+  <meta name="author" content="Danylo Beha">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!--
+    HTML-каркас особистої візитки.
+    Студент пише ТІЛЬКИ styles.css; додавати чи переставляти теги не можна.
+
+    Цільові макети — на скриншотах:
+      mobile.png   (~375 px)
+      tablet.png   (~768 px)
+      desktop.png  (~1200 px)
+  -->
+
+  <main class="card">
+
+    <section class="profile">
+      <img class="avatar"
+           src="https://via.placeholder.com/200x200/2050a0/ffffff?text=OP"
+           alt="Олена Петренко">
+      <h1>Олена Петренко</h1>
+      <p class="role">Junior Frontend Developer</p>
+      <p class="bio">
+        Студентка ІПЗ у НаУКМА. Будую сайти, які люблять браузери і користувачі.
+        Зараз шукаю першу роботу або стажування.
+      </p>
+    </section>
+
+    <section class="skills">
+      <h2>Навички</h2>
+      <ul>
+        <li>HTML5 / CSS3</li>
+        <li>JavaScript (ES2024)</li>
+        <li>TypeScript</li>
+        <li>React</li>
+        <li>Git і командна робота</li>
+        <li>Доступність (WCAG)</li>
+      </ul>
+    </section>
+
+    <section class="contact">
+      <h2>Звʼязатися</h2>
+      <form>
+        <label>Ваше імʼя
+          <input type="text" name="name" required>
+        </label>
+        <label>Електронна пошта
+          <input type="email" name="email" required>
+        </label>
+        <label>Повідомлення
+          <textarea name="msg" rows="4" required></textarea>
+        </label>
+        <button type="submit">Надіслати</button>
+      </form>
+    </section>
+
+  </main>
+
+</body>
+</html>
