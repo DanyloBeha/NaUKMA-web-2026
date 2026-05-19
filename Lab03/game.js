@@ -7,15 +7,30 @@
 Лічильник спроб видимий.
 Після вгадування або поразки — кнопка змінюється на «Грати ще раз», починається нова гра.
 Валідація: якщо вводять не число, поза діапазоном 1-100, або не вводять — повідомлення про помилку, спроба НЕ зараховується.
-додайте таблицю рекордів (зберігається в localStorage): після перемоги ім’я + кількість спроб у топ-5.
+додайте таблицю рекордів (зберігається в stats): після перемоги ім’я + кількість спроб у топ-5.
 */
 
 var attempts = 7;
 var key = Math.floor(Math.random() * 100);
+var stats = new Array(5).fill(0);
+/* 
+for (var i = 0; i <= 3; i++) {
+    stats[i] = newArray[2].fill(0);
+}
+*/
 
 function restartGame() {
     document.getElementById("guess").value = "";
     document.getElementById("submit").textContent = "Грати ще раз";
+}
+
+function updateStats() {
+    stats.push(7 - attempts);
+    stats.sort((a, b) => a - b);
+    stats = stats.slice(0, 5);
+    for (var j = 0; j < 5; j++) {
+        document.getElementById(`${j+1}`).textContent = stats[j] || '';
+    }
 }
 
 function guessNumber() {
@@ -43,6 +58,7 @@ function guessNumber() {
         document.getElementById("attempts").textContent = --attempts;
     } else {
         document.getElementById("message").textContent = "вгадав!"
+        updateStats();
         restartGame();
     }   
 
