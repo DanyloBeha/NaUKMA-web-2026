@@ -12,7 +12,7 @@
 
 var attempts = 7;
 var key = Math.floor(Math.random() * 100);
-var stats = new Array(5).fill(0);
+var stats = [];
 /* 
 for (var i = 0; i <= 3; i++) {
     stats[i] = newArray[2].fill(0);
