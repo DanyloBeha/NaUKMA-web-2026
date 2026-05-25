@@ -21,6 +21,10 @@ document.getElementById("addButton").addEventListener('click', function(event) {
     */
     const input = document.getElementById("newItem");
 
+    if (input.value === '') {
+        return;
+    }
+
     items.push({name: input.value, amount: 1, bought: false});
     renderMenu();
 
@@ -67,5 +71,17 @@ function renderMenu() {
         containerMenu.appendChild(document.createElement('hr'));
         containerMenu.appendChild(newMenuLine);
     }
-
 }
+
+// ----- 3. Кнопка видалити -----
+document.querySelector('.contrainer-menu-lines').addEventListener('click', function(event) {
+
+    if (event.target.classList.contains('delButton')) {
+        const menuLine = event.target.closest('.container-menu-line');
+        const itemName = menuLine.querySelector('.menuItemName').textContent;
+        const itemIndex = items.findIndex(item => item.name === itemName);
+        items.splice(itemIndex, 1);
+        renderMenu();
+    }
+    
+});
