@@ -200,7 +200,7 @@ input {
     font-weight: 600;
 }
 
-#inEdit {
+.menuItemName:focus {
     border: 1px solid lightblue;
     border-radius: 2px;
     padding: 4px;
