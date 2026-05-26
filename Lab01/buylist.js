@@ -26,7 +26,7 @@ document.getElementById("addButton").addEventListener('click', function(event) {
     }
 
     items.push({name: input.value, amount: 1, bought: false});
-    renderMenu();
+    render();
 
     input.value = '';
     input.focus();
@@ -81,9 +81,43 @@ document.querySelector('.contrainer-menu-lines').addEventListener('click', funct
         const itemName = menuLine.querySelector('.menuItemName').textContent;
         const itemIndex = items.findIndex(item => item.name === itemName);
         items.splice(itemIndex, 1);
-        renderMenu();
+        render();
     }
     
 });
 
 // ----- 4. Кнопки "куплено" і "не куплено" -----
+function renderList() {
+    const containerListNotBought = document.querySelector('.container-list-notBought');
+    containerListNotBought.innerHTML = '';
+    const containerListBought = document.querySelector('.container-list-bought');
+    containerListBought.innerHTML = '';
+
+    for (let item of items) {
+        if (item.bought == true) {
+            containerListBought.innerHTML += `  <span class="item"><s>${item.name}</s>
+                                                    <span class="amount"><s>${item.amount}</s></span>
+                                                </span>`;
+        } else {
+            containerListNotBought.innerHTML += `   <span class="item">${item.name}
+                                                        <span class="amount">${item.amount}</span>
+                                                    </span>`;
+        }
+    }
+}
+
+function render() {
+    renderMenu();
+    renderList();
+}
+
+document.querySelector('.contrainer-menu-lines').addEventListener('click', function(event) {
+
+    if (event.target.classList.contains('buyButton')) {
+        const menuLine = event.target.closest('.container-menu-line');
+        const itemName = menuLine.querySelector('.menuItemName').textContent;
+        const itemIndex = items.findIndex(item => item.name === itemName);
+        items[itemIndex].bought = !items[itemIndex].bought;
+        render();
+    }
+});
