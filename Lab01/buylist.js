@@ -39,31 +39,52 @@ let items = [
     {name: "Cир", amount: 1, bought: false},
 ]
 
+render();
+
 function renderMenu() {
-    const containerMenu = document.querySelector('.contrainer-menu-lines');
+    const containerMenu = document.querySelector('.container-menu-lines');
     containerMenu.innerHTML = '';
     for (let item of items) {
 
         let newMenuLine = document.createElement('div');
         let insideMenuLine = '';
-        insideMenuLine += ` <span class="menuItemName">${item.name}</span>
-                            <div class="middleBtn">
-                                <button class="roundButton minusButton" data-toolpit="Зменшити кількість">-</button>
-                                <span class="menuAmount">${item.amount}</span>
-                                <button class="roundButton plusButton" data-toolpit="Збільшити кількість">+</button>
-                            </div>`;
-        if (item.bought == true) {
+        insideMenuLine += ` <span class="menuItemName">${item.name}</span>`;
+        if (item.bought) {
             // i.e. Позначити, як не куплене
-            insideMenuLine += ` <div class="endBtn">
+            insideMenuLine += `
+                                <div class="middleBtn">
+                                    <span class="menuAmount">${item.amount}</span>
+                                </div>
+                                <div class="endBtn">
                                     <button class="buyButton" data-toolpit="Позначити, як не куплене">Не куплено</button>
-                                </div>`;
-        } else {
+                                </div>
+                            `;
+        } else if (!item.bought && item.amount > 1) {
             // i.e. Позначити, як куплене
-            insideMenuLine += ` <div class="endBtn">
+            insideMenuLine += ` 
+                                <div class="middleBtn">
+                                    <button class="roundButton minusButton" data-toolpit="Зменшити кількість">-</button>
+                                    <span class="menuAmount">${item.amount}</span>
+                                    <button class="roundButton plusButton" data-toolpit="Збільшити кількість">+</button>
+                                </div>
+                                <div class="endBtn">
                                     <button class="buyButton" data-toolpit="Позначити, як куплене">Куплено</button>
                                     <button class="delButton" data-toolpit="Вилучити позицію">✖</button>
-                                </div>`;
+                                </div>
+                            `;
+        } else {
+            insideMenuLine += ` 
+                                <div class="middleBtn">
+                                    <span class="menuAmount">${item.amount}</span>
+                                    <button class="roundButton plusButton" data-toolpit="Збільшити кількість">+</button>
+                                </div>
+                                <div class="endBtn">
+                                    <button class="buyButton" data-toolpit="Позначити, як куплене">Куплено</button>
+                                    <button class="delButton" data-toolpit="Вилучити позицію">✖</button>
+                                </div>
+                            `;
         }
+
         
         newMenuLine.className = 'container-menu-line';
         newMenuLine.innerHTML = insideMenuLine;
@@ -74,7 +95,7 @@ function renderMenu() {
 }
 
 // ----- 3. Кнопка видалити -----
-document.querySelector('.contrainer-menu-lines').addEventListener('click', function(event) {
+document.querySelector('.container-menu-lines').addEventListener('click', function(event) {
 
     if (event.target.classList.contains('delButton')) {
         const menuLine = event.target.closest('.container-menu-line');
@@ -94,7 +115,7 @@ function renderList() {
     containerListBought.innerHTML = '';
 
     for (let item of items) {
-        if (item.bought == true) {
+        if (item.bought) {
             containerListBought.innerHTML += `  <span class="item"><s>${item.name}</s>
                                                     <span class="amount"><s>${item.amount}</s></span>
                                                 </span>`;
@@ -111,7 +132,7 @@ function render() {
     renderList();
 }
 
-document.querySelector('.contrainer-menu-lines').addEventListener('click', function(event) {
+document.querySelector('.container-menu-lines').addEventListener('click', function(event) {
 
     if (event.target.classList.contains('buyButton')) {
         const menuLine = event.target.closest('.container-menu-line');
@@ -124,7 +145,7 @@ document.querySelector('.contrainer-menu-lines').addEventListener('click', funct
 
 // ----- 5. Редагування назви -----
 // class="inEdit"
-document.querySelector('.contrainer-menu-lines').addEventListener('click', function(event) {
+document.querySelector('.container-menu-lines').addEventListener('click', function(event) {
     if (event.target.classList.contains('menuItemName')) {
         const menuLine = event.target.closest('.container-menu-line');
         const item = menuLine.querySelector('.menuItemName');
@@ -148,5 +169,32 @@ document.querySelector('.contrainer-menu-lines').addEventListener('click', funct
             render();
         });
     } 
+
+});
+
+// ----- 6. Редагування кількості товарів -----
+document.querySelector('.container-menu-lines').addEventListener('click', function(event) {
+
+    if (event.target.classList.contains('minusButton')) {
+        const menuLine = event.target.closest('.container-menu-line');
+        const itemName = menuLine.querySelector('.menuItemName').textContent;
+        const itemIndex = items.findIndex(item => item.name === itemName);
+        if (items[itemIndex].amount !== 1) {
+            items[itemIndex].amount -= 1;
+            render();
+        }
+    }
+
+});
+
+document.querySelector('.container-menu-lines').addEventListener('click', function(event) {
+
+    if (event.target.classList.contains('plusButton')) {
+        const menuLine = event.target.closest('.container-menu-line');
+        const itemName = menuLine.querySelector('.menuItemName').textContent;
+        const itemIndex = items.findIndex(item => item.name === itemName);
+        items[itemIndex].amount += 1;
+        render();
+    }
 
 });
