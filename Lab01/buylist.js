@@ -85,3 +85,5 @@ document.querySelector('.contrainer-menu-lines').addEventListener('click', funct
     }
     
 });
+
+// ----- 4. Кнопки "куплено" і "не куплено" -----
