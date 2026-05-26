@@ -33,10 +33,10 @@ document.getElementById("addButton").addEventListener('click', function(event) {
 });
 
 // ----- 2. Налаштування (запуск з 3 товарами, втілено як масив) -----
-let items = [
+let items = JSON.parse(localStorage.getItem("items")) || [
     {name: "Помідори", amount: 2, bought: true},
     {name: "Печиво", amount: 2, bought: false},
-    {name: "Cир", amount: 1, bought: false},
+    {name: "Cир", amount: 1, bought: false}
 ]
 
 render();
@@ -130,6 +130,12 @@ function renderList() {
 function render() {
     renderMenu();
     renderList();
+    if (items.length) {
+        localStorage.setItem("items", JSON.stringify(items));
+    } else {
+        localStorage.removeItem("items");
+    }
+
 }
 
 document.querySelector('.container-menu-lines').addEventListener('click', function(event) {
