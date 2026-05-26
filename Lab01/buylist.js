@@ -121,3 +121,32 @@ document.querySelector('.contrainer-menu-lines').addEventListener('click', funct
         render();
     }
 });
+
+// ----- 5. Редагування назви -----
+// class="inEdit"
+document.querySelector('.contrainer-menu-lines').addEventListener('click', function(event) {
+    if (event.target.classList.contains('menuItemName')) {
+        const menuLine = event.target.closest('.container-menu-line');
+        const item = menuLine.querySelector('.menuItemName');
+        const itemName = item.textContent;
+        const itemIndex = items.findIndex(item => item.name === itemName);
+        if (items[itemIndex].bought) {
+            return;
+        }
+
+        const input = document.createElement('input');
+        input.value = itemName;
+        input.className = 'menuItemName inEdit';
+        item.replaceWith(input);
+        input.focus();
+        
+        input.addEventListener('blur', function() {
+            const newName = input.value.trim();
+            if (newName !== '') {
+                items[itemIndex].name = newName;
+            }
+            render();
+        });
+    } 
+
+});
