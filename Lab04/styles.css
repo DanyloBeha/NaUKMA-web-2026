@@ -1,7 +1,35 @@
+/* 
+CSS: .slide прихований за замовчуванням, .slide.active — показується
+*/
+
 .slide {
-    display: none;
+    opacity: 0;
+    transition: all 0.25s ease;
+    position: absolute;
 }
 
 .slide.active {
-    visibility: visible;
+    opacity: 1;
+    transition: all 0.25s ease;
+}
+
+.slider {
+    position: relative;
+    width: 300px;
+}
+
+.slides {
+    width: 300px;
+    height: 300px;
+}
+
+.dot {
+    margin: 20px;
+    font-size: xx-large;
+}
+
+.dot.active {
+    color: red;
+    transition: all 0.25s ease;
+
 }
