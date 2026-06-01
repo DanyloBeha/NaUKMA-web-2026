@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Pokemon Explorer</title>
+    <meta name="author" content="Danylo Beha">
+    <link rel="stylesheet" href="pokemon.css">
+    <script src="pokemon.js" defer></script>
+</head>
+<body>
+    <h1>Pokemons</h1>
+    <button class="prev">‹</button>
+    <button class="next">›</button>
+
+    <label>
+        <input class="search" type="text" placeholder="Знайти покемона">
+    </label>
+
+    <div class="pokemons">
+
+    </div>
+
+    <div class="modal">
+        <button class="modal-close">✕</button>
+        <img class="modal-sprite" alt="sprite">
+        <h2 class="modal-name"></h2>
+        <p class="modal-height"></p>
+        <p class="modal-weight"></p>
+        <p class="modal-types"></p>
+        <ul class="modal-stats"></ul>
+    </div>
+</body>
+</html>
