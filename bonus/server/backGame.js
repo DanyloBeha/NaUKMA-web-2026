@@ -17,8 +17,8 @@ ID на полі:
 
 game = {
     "players": {
-        "p1": {"ws": None, "board": generateEmptyBoard()},
-        "p2": {"ws": None, "board": generateEmptyBoard()},
+        "p1": {"ws": null, "board": generateEmptyBoard()},
+        "p2": {"ws": null, "board": generateEmptyBoard()},
     },
     "toMove": "p1",
     "status": "setup"
