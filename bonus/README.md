@@ -23,11 +23,13 @@
 ## Ідея та реалізація
 Як синхронізувати дві дошки?<br>
 - *deploy через GitHub Pages* - хостить фронтенд
-- *render або railway* - хоситить бекенд, де дошка буде зберігатися змінних
+- *render* - хоситить бекенд, де дошка буде зберігатися змінних
+- комунікація через *socket.io*
 - по файлах: html, css і js для фронтенду і js (node.js) для бекенду
 
 ## Запуск
->WIP
+https://danylobeha.github.io/NaUKMA-web-2026/game.html - frontend
+https://naukma-web-2026.onrender.com - back
 
 
 ```
