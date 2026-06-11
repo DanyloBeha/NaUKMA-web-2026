@@ -107,8 +107,8 @@ const cellSize = 30;
 const colSizes = [];
 const rowSizes = [];
 for (let i = 0; i < 10; i++) {
-    cellSizes.push({idx: i, width: cellSize});
-    cellSizes.push({idx: i, height: cellSize});
+    colSizes.push({idx: i, width: cellSize});
+    rowSizes.push({idx: i, height: cellSize});
 }
 
 const boardReport = (data) => ({
