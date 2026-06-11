@@ -5,29 +5,29 @@ ID 2 = ✘
 ID 3 = •
 */
 
-// creating the table
-function customCell(cell, data) {
-    console.log(data.type, data.value);
-    if (data.type != 'value') { return; }
-    switch (Number(data.value)) {
-        case 0: cell.style.backgroundColor = 'white'; cell.innerHTML = '';  break;
-        case 1: cell.style.backgroundColor = 'gray'; cell.innerHTML = '';  break;
-        case 2: cell.style.backgroundColor = 'red'; cell.innerHTML = '✘';  break;
-        case 3: cell.style.backgroundColor = 'white'; cell.innerHTML = '•';  break;
-    }
+function applyBoardStyles(containerId) {
+    document.querySelectorAll('#' + containerId + ' td').forEach(td => {
+        const val = Number(td.textContent.trim());
+        switch (val) {
+            case 0: td.style.backgroundColor = '#cfe2f3'; td.style.color = '#cfe2f3'; break;
+            case 1: td.style.backgroundColor = '#808080'; td.style.color = '#808080'; break;
+            case 2: td.style.backgroundColor = '#e74c3c'; td.textContent = '✘'; td.style.color = '#cfe2f3'; break;
+            case 3: td.style.backgroundColor = '#cfe2f3'; td.textContent = '•'; td.style.color = '#333'; break;
+        }
+    });
 }
 
 const userBoardPivot = new WebDataRocks({
     container: "#userBoard",
-    toolbar: false,
-    customizeCell: customCell
+    toolbar: false
 });
-
 const enemyBoardPivot = new WebDataRocks({
     container: "#enemyBoard",
-    toolbar: false,
-    customizeCell: customCell
+    toolbar: false
 });
+
+userBoardPivot.on('reportcomplete', () => applyBoardStyles('userBoard'));
+enemyBoardPivot.on('reportcomplete', () => applyBoardStyles('enemyBoard'));
 
 let gameStatus = 'waiting';
 
