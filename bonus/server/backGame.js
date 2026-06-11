@@ -58,7 +58,7 @@ io.on('connection', (socket) => {
     });
 
     socket.on('toggleCell', ({row, col}) => {
-        if (game.Status != 'waiting') { return; }
+        if (game.status != 'waiting') { return; }
         
         const tboard = game.players[playerId].board;
         if (tboard[row][col] == 0) {
