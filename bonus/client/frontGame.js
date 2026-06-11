@@ -2,6 +2,12 @@
 const userBoardPivot = new WebDataRocks({
     container: "#userBoard",
     toolbar: true,
+    options: {
+        grid: {
+            showGrandTotals: "off",
+            showTotals: "off"
+        }
+    },
     report: {
         dataSource: {
             data: []
@@ -47,6 +53,12 @@ const userBoardPivot = new WebDataRocks({
 const enemyBoardPivot = new WebDataRocks({
     container: "#enemyBoard",
     toolbar: true,
+    options: {
+        grid: {
+            showGrandTotals: "off",
+            showTotals: "off"
+        }
+    },
     report: {
         dataSource: {
             data: []
