@@ -32,9 +32,11 @@ enemyBoardPivot.on('cellclick', function(cell) {
 const socket = io('https://naukma-web-2026.onrender.com');
 
 const cellSize = 30;
-const cellSizes = [];
+const colSizes = [];
+const rowSizes = [];
 for (let i = 0; i < 10; i++) {
     cellSizes.push({idx: i, width: cellSize});
+    cellSizes.push({idx: i, height: cellSize});
 }
 
 const boardReport = (data) => ({
@@ -51,8 +53,8 @@ const boardReport = (data) => ({
         }
     },
     tableSizes: {
-        columns: cellSizes,
-        rows: cellSizes
+        columns: colSizes,
+        rows: rowSizes
     }
 });
 
