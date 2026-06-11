@@ -1,28 +1,82 @@
 // creating the table
 const userBoardPivot = new WebDataRocks({
     container: "#userBoard",
+    toolbar: true,
     report: {
         dataSource: {
             data: []
         },
-    },
-    customizeCell: function(cell, data) {
-        cell.style.width = "30px";
-        cell.style.height = "30px";
+        tableSizes: {
+            columns: [
+                {idx: 0, width: 30},
+                {idx: 1, width: 30},
+                {idx: 2, width: 30},
+                {idx: 3, width: 30},
+                {idx: 4, width: 30},
+                {idx: 5, width: 30},
+                {idx: 6, width: 30},
+                {idx: 7, width: 30},
+                {idx: 8, width: 30},
+                {idx: 9, width: 30}
+            ],
+            rows: [
+                {idx: 0, width: 30},
+                {idx: 1, width: 30},
+                {idx: 2, width: 30},
+                {idx: 3, width: 30},
+                {idx: 4, width: 30},
+                {idx: 5, width: 30},
+                {idx: 6, width: 30},
+                {idx: 7, width: 30},
+                {idx: 8, width: 30},
+                {idx: 9, width: 30}
+            ]
+        }
     }
+    // customizeCell: function(cell, data) {
+    //     cell.style.width = "30px";
+    //     cell.style.height = "30px";
+    // }
 });
 
 const enemyBoardPivot = new WebDataRocks({
     container: "#enemyBoard",
+    toolbar: true,
     report: {
         dataSource: {
             data: []
         },
-    },
-    customizeCell: function(cell, data) {
-        cell.style.width = "30px";
-        cell.style.height = "30px";
+        tableSizes: {
+            columns: [
+                {idx: 0, width: 30},
+                {idx: 1, width: 30},
+                {idx: 2, width: 30},
+                {idx: 3, width: 30},
+                {idx: 4, width: 30},
+                {idx: 5, width: 30},
+                {idx: 6, width: 30},
+                {idx: 7, width: 30},
+                {idx: 8, width: 30},
+                {idx: 9, width: 30}
+            ],
+            rows: [
+                {idx: 0, width: 30},
+                {idx: 1, width: 30},
+                {idx: 2, width: 30},
+                {idx: 3, width: 30},
+                {idx: 4, width: 30},
+                {idx: 5, width: 30},
+                {idx: 6, width: 30},
+                {idx: 7, width: 30},
+                {idx: 8, width: 30},
+                {idx: 9, width: 30}
+            ]
+        }
     }
+    // customizeCell: function(cell, data) {
+    //     cell.style.width = "30px";
+    //     cell.style.height = "30px";
+    // }
 });
 
 userBoardPivot.on('cellclick', function(cell) {
