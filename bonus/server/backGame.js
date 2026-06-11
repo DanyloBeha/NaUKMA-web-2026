@@ -38,7 +38,7 @@ function generateEmptyBoard() {
 
 /**
  * Only called in playing state, only called on cell with ID 0 or 1
- * This function is clean 2d array modification, it has nothing to do with socket or client side
+ * This function is clean 2d array modification and can change game status
  * 
  * @param {*} targetPlayer 
  * @param {*} x 
@@ -53,7 +53,7 @@ function shoot(targetPlayer, row, col) {
     } else if (cell == 1) {
         game.players[targetPlayer].board[row][col] = 2;
         if (checkShipSunk(targetPlayer, row, col)) {
-            // mark surrouding cells, notify the client
+            // notify the client
         }
 
         if (checkGameOver(targetPlayer)) {
@@ -64,6 +64,7 @@ function shoot(targetPlayer, row, col) {
 
 /**
  * Checks if the ship hit is destroyed or not
+ * And marks all the cells aroung the ship with ID 3 if the ship is destroyed
  *  
  * @param {*} targetPlayer 
  * @param {*} row 
@@ -72,27 +73,46 @@ function shoot(targetPlayer, row, col) {
 function checkShipSunk(targetPlayer, row, col) {
     const board = game.players[targetPlayer].board;
     let rowDelta = 0, colDelta = 0;
+    let shipCoords = [];
+    shipCoords.push([row, col]);
 
+    // dfs in all directions to check if ship is sunk
     // right
     while (board[row][col+colDelta] == 2 && col+colDelta < 9) {
         if (board[row][col+(++colDelta)] == 1) { return false; }
+        if (board[row][col+colDelta] == 2) { shipCoords.push([row, col+colDelta]); }
     }
 
     // left
     colDelta = 0;
     while (board[row][col-colDelta] == 2 && col-colDelta > 0) {
         if (board[row][col-(++colDelta)] == 1) { return false; }
+        if (board[row][col-colDelta] == 2) { shipCoords.push([row, col-colDelta]); }
     }
 
     // down
     while (board[row+rowDelta][col] == 2 && row+rowDelta < 9) {
         if (board[row+(++rowDelta)][col] == 1) { return false; }
+        if (board[row+rowDelta][col] == 2) { shipCoords.push([row+rowDelta, col]); }
     }
 
     // up
     rowDelta = 0;
     while (board[row-rowDelta][col] == 2 && row-rowDelta > 0) {
         if (board[row-(++rowDelta)][col] == 1) { return false; }
+        if (board[row-rowDelta][col] == 2) { shipCoords.push([row-rowDelta, col]); }
+    }
+
+    // here we know the ship is sunk - marking the surrounding cells of shipCoords with id = 3
+    // algorithm - iterate through shipCoords, for each cell iterate through all the neighbours and if neightbour == 0, assign 3 to it
+    const directions = [[-1, 0], [-1, 1], [0, 1], [1, 1], [1, 0], [1, -1], [0, -1], [-1, -1]]   // 8 directions, [row, column]
+    for (let coord of shipCoords) {
+        for (let dir of directions) {
+            const r = coord[0] + dir[0], c = coord[1] + dir[1];
+            if (r >= 0 && r < 10 && c >= 0 && c < 10 && board[r][c] != 0) {
+                game.players[targetPlayer].board[r][c] = 3;
+            }
+        }
     }
 
     return true;
