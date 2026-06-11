@@ -26,7 +26,7 @@ const socket = io('https://naukma-web-2026.onrender.com');
 const cellSize = 30;
 const colSizes = [];
 const rowSizes = [];
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 11; i++) {
     colSizes.push({idx: i, width: cellSize});
     rowSizes.push({idx: i, height: cellSize});
 }
