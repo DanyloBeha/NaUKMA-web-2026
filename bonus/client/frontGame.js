@@ -19,7 +19,7 @@ const enemyBoardPivot = new WebDataRocks({
 userBoardPivot.on('cellclick', function(cell) {
     const row = cell.rowIndex - 2;
     const col = cell.columnIndex - 1;
-    if (row < 0 || row > 9 || col < 0 || col > 9) return;
+    if (row < 0 || row > 9 || col < 0 || col > 9) { return; }
     socket.emit('toggleCell', {row, col});
 });
 
@@ -29,6 +29,11 @@ enemyBoardPivot.on('cellclick', function(cell) {
     alert("Click on enemy board, row: " + cell.rowIndex + ", column: " + cell.columnIndex);
 });
 
+
+document.querySelector('.confirmShips').addEventListener('click', function(event) {
+    socket.emit('startGame');
+    event.target.style.display = 'none';
+});
 
 // socket.io connection
 const socket = io('https://naukma-web-2026.onrender.com');
@@ -68,3 +73,7 @@ socket.on('boardInit', ({userBoard, enemyBoard}) => {
 socket.on('boardUpdate', ({userBoard}) => {
     userBoardPivot.setReport(boardReport(userBoard));
 });
+
+socket.on('gameStarted', () => {
+    alert("Game started!");
+})
