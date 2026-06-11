@@ -38,7 +38,7 @@ io.on('connection', (socket) => {
     });
 });
 
-server.listen(3000);
+server.listen(process.env.PORT || 3000);
 
 /**
  * Turning 2D array from game logic into array if flat objects for WebDataRocks
