@@ -1,12 +1,13 @@
 /*
 ID 0 = nothing
 ID 1 = gray color, nothing in enemy
-ID 2 = 
+ID 2 = ✘
 ID 3 = •
 */
 
 // creating the table
 function customCell(cell, data) {
+    console.log(data.type, data.value);
     if (data.type != 'value') { return; }
     switch (Number(data.value)) {
         case 0: cell.style.backgroundColor = 'white'; cell.innerHTML = '';  break;
