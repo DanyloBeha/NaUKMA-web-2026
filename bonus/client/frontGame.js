@@ -1,19 +1,31 @@
 /*
 ID 0 = nothing
 ID 1 = gray color, nothing in enemy
-ID 2 = ✘
+ID 2 = 
 ID 3 = •
 */
 
 // creating the table
+function customCell(cell, data) {
+    if (data.type != 'value') { return; }
+    switch (data.value) {
+        case 0: cell.style.backgroundColor = 'white'; cell.innerHTML = '';  break;
+        case 1: cell.style.backgroundColor = 'gray'; cell.innerHTML = '';  break;
+        case 2: cell.style.backgroundColor = 'red'; cell.innerHTML = '✘';  break;
+        case 3: cell.style.backgroundColor = 'white'; cell.innerHTML = '•';  break;
+    }
+}
+
 const userBoardPivot = new WebDataRocks({
     container: "#userBoard",
-    toolbar: false
+    toolbar: false,
+    customizeCell: customCell
 });
 
 const enemyBoardPivot = new WebDataRocks({
     container: "#enemyBoard",
-    toolbar: false
+    toolbar: false,
+    customizeCell: customCell
 });
 
 let gameStatus = 'waiting';
