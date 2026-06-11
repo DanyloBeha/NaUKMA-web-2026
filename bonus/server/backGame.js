@@ -50,7 +50,7 @@ function flattenBoard(board) {
     const flat = [];
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
-            flat.push({row: i, col: j, state: board[i][j]});
+            flat.push({row: String(i), col: String(j), state: board[i][j]});
         }
     }
     return flat;
