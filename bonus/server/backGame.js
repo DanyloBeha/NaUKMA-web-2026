@@ -80,6 +80,25 @@ io.on('connection', (socket) => {
         }
     });
 
+    socket.on('shoot', ({row, col}) => {
+        if (game.status != 'playing') { return; }
+        if (game.toMove != playerId) { return; }
+
+        shoot(enemyId, row, col);
+        game.toMove = enemyId;
+
+        const p1Board = flattenBoard(game.players['p1'].board);
+        const p2Board = flattenBoard(game.players['p2'].board);
+
+        game.players['p1'].ws.emit('boardsUpdate', {userBoard: p1Board, enemyBoard: p2Board});
+        game.players['p2'].ws.emit('boardsUpdate', {userBoard: p2Board, enemyBoard: p1Board});
+
+        if (game.status == 'over') {
+            game.players[playerId].ws.emit('gameOver', {winner: 'you'});
+            game.players[enemyId].ws.emit('gameOver', {winner: 'enemy'});
+        }
+    });
+
     socket.on('disconnect', () => {
         game.players[playerId].ws = null;
         game.players[playerId].status = 'waiting';
@@ -153,6 +172,7 @@ function shoot(targetPlayer, row, col) {
     const cell = game.players[targetPlayer].board[row][col];
     if (cell == 2 || cell == 3) { return; }
 
+    // else - shoot and change moveTo to next player
     if (cell == 0) {
         game.players[targetPlayer].board[row][col] = 3;
     } else if (cell == 1) {
