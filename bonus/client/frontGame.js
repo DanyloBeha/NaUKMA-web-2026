@@ -115,7 +115,16 @@ enemyBoardPivot.on('cellclick', function(cell) {
 // socket.io connection
 const socket = io('https://naukma-web-2026.onrender.com');
 
+const boardReport = (data) => ({
+    dataSource: { data },
+    slice: {
+        rows: [{ uniqueName: "row" }],
+        columns: [{ uniqueName: "col" }],
+        measures: [{ uniqueName: "state", aggregation: "sum" }]
+    }
+});
+
 socket.on('boardInit', ({userBoard, enemyBoard}) => {
-    userBoardPivot.updateData({data: userBoard});
-    enemyBoardPivot.updateData({data: enemyBoard});
+    userBoardPivot.setReport(boardReport(userBoard));
+    enemyBoardPivot.setReport(boardReport(enemyBoard));
 });
