@@ -79,20 +79,29 @@ socket.on('boardUpdate', ({userBoard}) => {
     userBoardPivot.setReport(boardReport(userBoard));
 });
 
-socket.on('gameStarted', () => {
+socket.on('gameStarted', ({yourTurn}) => {
     gameStatus = 'playing';
-    alert("Game started!");     // space for improvement
+    if (yourTurn == true) {
+        document.getElementById('turnInfo').textContent = "Ваш хід";
+    } else {
+        document.getElementById('turnInfo').textContent = "Хід суперника";
+    }
 });
 
-socket.on('boardsUpdate', ({userBoard, enemyBoard}) => {
+socket.on('boardsUpdate', ({userBoard, enemyBoard, yourTurn}) => {
     userBoardPivot.setReport(boardReport(userBoard));
     enemyBoardPivot.setReport(boardReport(enemyBoard));
+    if (yourTurn == true) {
+        document.getElementById('turnInfo').textContent = "Ваш хід";
+    } else {
+        document.getElementById('turnInfo').textContent = "Хід суперника";
+    }
 });
 
 socket.on('gameOver', ({winner}) => {
     if (winner == "you") {
-        alert("You won!")
+        alert("Ви перемогли!")
     } else {
-        alert("You lost!")
+        alert("Ви програли!")
     }
 });
