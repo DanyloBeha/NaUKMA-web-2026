@@ -71,8 +71,18 @@ io.on('connection', (socket) => {
         });
     });
 
+    socket.on('startGame', () => {
+        if (game.status !== 'waiting') { return; }
+        game.players[playerId].status = 'ready';
+        if (game.players['p1'].status == 'ready' && game.players['p2'].status == 'ready') {
+            game.status = 'playing';
+            io.emit('gameStarted');
+        }
+    });
+
     socket.on('disconnect', () => {
         game.players[playerId].ws = null;
+        game.players[playerId].status = 'waiting';
     });
 });
 
@@ -98,8 +108,8 @@ function flattenBoard(board) {
 // ----- game logic -----
 let game = {
     "players": {
-        "p1": {"ws": null, "board": generateEmptyBoard()},
-        "p2": {"ws": null, "board": generateEmptyBoard()},
+        "p1": {"ws": null, "board": generateEmptyBoard(), "status": "waiting"},
+        "p2": {"ws": null, "board": generateEmptyBoard(), "status": "waiting"},
     },
     "toMove": "p1",
     "status": "waiting"
