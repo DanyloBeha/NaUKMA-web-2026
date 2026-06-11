@@ -16,17 +16,22 @@ const enemyBoardPivot = new WebDataRocks({
     toolbar: false
 });
 
+let gameStatus = 'waiting';
+
 userBoardPivot.on('cellclick', function(cell) {
+    if (gameStatus != 'waiting') { return; }
     const row = cell.rowIndex - 2;
     const col = cell.columnIndex - 1;
     if (row < 0 || row > 9 || col < 0 || col > 9) { return; }
     socket.emit('toggleCell', {row, col});
 });
 
-// template
 enemyBoardPivot.on('cellclick', function(cell) {
-    // cell.rowIndex, cell.columnIndex
-    alert("Click on enemy board, row: " + cell.rowIndex + ", column: " + cell.columnIndex);
+    if (gameStatus != 'playing') { return; }
+    const row = cell.rowIndex - 2;
+    const col = cell.columnIndex - 1;
+    if (row < 0 || row > 9 || col < 0 || col > 9) { return; }
+    socket.emit('shoot', {row, col});
 });
 
 
@@ -75,5 +80,19 @@ socket.on('boardUpdate', ({userBoard}) => {
 });
 
 socket.on('gameStarted', () => {
-    alert("Game started!");
-})
+    gameStatus = 'playing';
+    alert("Game started!");     // space for improvement
+});
+
+socket.on('boardsUpdate', ({userBoard, enemyBoard}) => {
+    userBoardPivot.setReport(boardReport(userBoard));
+    enemyBoardPivot.setReport(boardReport(enemyBoard));
+});
+
+socket.on('gameOver', ({winner}) => {
+    if (winner == "you") {
+        alert("You won!")
+    } else {
+        alert("You lost!")
+    }
+});
