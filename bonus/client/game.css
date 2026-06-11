@@ -18,20 +18,3 @@ h1 {
     height: 300px;
     margin: 10px;
 }
-
-.cell-0 {
-    background-color: white !important;
-    color: transparent !important;
-}
-.cell-1 {
-    background-color: gray !important;
-    color: transparent !important;
-}
-.cell-2 {
-    background-color: red !important;
-    color: white !important;
-}
-.cell-3 {
-    background-color: white !important;
-    color: black !important;
-}
