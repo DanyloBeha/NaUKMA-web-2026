@@ -34,15 +34,15 @@ const socket = io('https://naukma-web-2026.onrender.com');
 const cellSize = 30;
 const cellSizes = [];
 for (let i = 0; i < 10; i++) {
-    cellSizes.push({ idx: i, width: cellSize });
+    cellSizes.push({idx: i, width: cellSize});
 }
 
 const boardReport = (data) => ({
     dataSource: { data },
     slice: {
-        rows: [{ uniqueName: "row" }],
-        columns: [{ uniqueName: "col" }],
-        measures: [{ uniqueName: "state", aggregation: "sum" }]
+        rows: [{uniqueName: "row"}],
+        columns: [{uniqueName: "col"}],
+        measures: [{uniqueName: "state", aggregation: "sum"}]
     },
     options: {
         grid: {
