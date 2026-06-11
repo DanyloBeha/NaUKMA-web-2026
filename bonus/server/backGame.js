@@ -16,7 +16,49 @@ ID на полі:
 Стадії гри: waiting -> playing -> over
 */
 
-game = {
+// ----- socket.io connection -----
+const express = require('express');
+const http = require('http');
+const { Server } = require('socket.io');
+
+const app = express();
+const server = http.createServer(app);
+const io = new Server(server, {
+    cors: {
+        origin: "https://danylobeha.github.io"
+    }
+});
+
+app.use(express.static('../client'));
+
+io.on('connection', (socket) => {
+    socket.emit('boardInit', {
+        userBoard: flattenBoard(game.players['p1'].board),
+        enemyBoard: flattenBoard(game.players['p2'].board)
+    });
+});
+
+server.listen(3000);
+
+/**
+ * Turning 2D array from game logic into array if flat objects for WebDataRocks
+ * 
+ * @param {*} board 
+ * @returns 
+ */
+function flattenBoard(board) {
+    const flat = [];
+    for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+            flat.push({row: i, col: j, state: board[i][j]});
+        }
+    }
+    return flat;
+}
+
+
+// ----- game logic -----
+let game = {
     "players": {
         "p1": {"ws": null, "board": generateEmptyBoard()},
         "p2": {"ws": null, "board": generateEmptyBoard()},
@@ -26,7 +68,7 @@ game = {
 }
 
 function generateEmptyBoard() {
-    board = []
+    let board = []
     for (let i = 0; i < 10; i++) {
         board.push([]);
         for (let j = 0; j < 10; j++) {
@@ -36,8 +78,23 @@ function generateEmptyBoard() {
     return board;
 }
 
+/* 
+
+ * Randomly fills board with ships
+ * 
+ * 10 ships:
+ * 1 x 4, 2 x 3, 3 x 2, 4 x 1
+ * 
+ * @param {*} board 
+
+function fillBoardWithShipsRandom(board) {
+    const shipsLengths = [4, 3, 3, 2, 2, 2, 1, 1, 1, 1];
+
+}
+*/
+
 /**
- * Only called in playing state, only called on cell with ID 0 or 1
+ * Only called in playing state, only called on cell with ID 0 or 1.
  * This function is clean 2d array modification and can change game status
  * 
  * @param {*} targetPlayer 
@@ -63,7 +120,7 @@ function shoot(targetPlayer, row, col) {
 }
 
 /**
- * Checks if the ship hit is destroyed or not
+ * Checks if the ship hit is destroyed or not.
  * And marks all the cells aroung the ship with ID 3 if the ship is destroyed
  *  
  * @param {*} targetPlayer 
