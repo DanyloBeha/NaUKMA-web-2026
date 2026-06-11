@@ -7,14 +7,12 @@ ID 3 = •
 
 // creating the table
 function customCell(cell, data) {
-    console.log(data.type, data.value);
     if (data.type != 'value') { return; }
-    switch (Number(data.value)) {
-        case 0: cell.style.backgroundColor = 'white'; cell.innerHTML = '';  break;
-        case 1: cell.style.backgroundColor = 'gray'; cell.innerHTML = '';  break;
-        case 2: cell.style.backgroundColor = 'red'; cell.innerHTML = '✘';  break;
-        case 3: cell.style.backgroundColor = 'white'; cell.innerHTML = '•';  break;
-    }
+    const val = Number(data.value);
+    if (val < 0 || val > 3) { return; }
+    cell.classList.add('cell-' + val);
+    if (val === 2) { cell.innerHTML = '✘'; }
+    if (val === 3) { cell.innerHTML = '•'; }
 }
 
 const userBoardPivot = new WebDataRocks({
