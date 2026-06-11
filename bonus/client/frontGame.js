@@ -8,7 +8,7 @@ ID 3 = •
 // creating the table
 function customCell(cell, data) {
     if (data.type != 'value') { return; }
-    switch (data.value) {
+    switch (Number(data.value)) {
         case 0: cell.style.backgroundColor = 'white'; cell.innerHTML = '';  break;
         case 1: cell.style.backgroundColor = 'gray'; cell.innerHTML = '';  break;
         case 2: cell.style.backgroundColor = 'red'; cell.innerHTML = '✘';  break;
