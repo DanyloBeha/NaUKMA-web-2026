@@ -1,3 +1,10 @@
+/*
+ID 0 = nothing
+ID 1 = gray color, nothing in enemy
+ID 2 = ✘
+ID 3 = •
+*/
+
 // creating the table
 const userBoardPivot = new WebDataRocks({
     container: "#userBoard",
@@ -10,10 +17,13 @@ const enemyBoardPivot = new WebDataRocks({
 });
 
 userBoardPivot.on('cellclick', function(cell) {
-    // cell.rowIndex, cell.columnIndex
-    alert("Click on home board, row: " + cell.rowIndex + ", column: " + cell.columnIndex);
+    const row = cell.rowIndex - 2;
+    const col = cell.columnIndex - 1;
+    if (row < 0 || row > 9 || col < 0 || col > 9) return;
+    socket.emit('toggleCell', {row, col});
 });
 
+// template
 enemyBoardPivot.on('cellclick', function(cell) {
     // cell.rowIndex, cell.columnIndex
     alert("Click on enemy board, row: " + cell.rowIndex + ", column: " + cell.columnIndex);
@@ -53,4 +63,8 @@ const boardReport = (data) => ({
 socket.on('boardInit', ({userBoard, enemyBoard}) => {
     userBoardPivot.setReport(boardReport(userBoard));
     enemyBoardPivot.setReport(boardReport(enemyBoard));
+});
+
+socket.on('boardUpdate', ({userBoard}) => {
+    userBoardPivot.setReport(boardReport(userBoard));
 });
