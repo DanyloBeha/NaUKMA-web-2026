@@ -54,7 +54,7 @@ io.on('connection', (socket) => {
     // own board always will be on the left and enemy board always will be on right
     socket.emit('boardInit', {
         userBoard: flattenBoard(game.players[playerId].board),
-        enemyBoard: flattenBoard(game.players[enemyId].board)
+        enemyBoard: flattenEnemyBoard(game.players[enemyId].board)
     });
 
     socket.on('toggleCell', ({row, col}) => {
@@ -87,11 +87,8 @@ io.on('connection', (socket) => {
         shoot(enemyId, row, col);
         game.toMove = enemyId;
 
-        const p1Board = flattenBoard(game.players['p1'].board);
-        const p2Board = flattenBoard(game.players['p2'].board);
-
-        game.players['p1'].ws.emit('boardsUpdate', {userBoard: p1Board, enemyBoard: p2Board});
-        game.players['p2'].ws.emit('boardsUpdate', {userBoard: p2Board, enemyBoard: p1Board});
+        game.players['p1'].ws.emit('boardsUpdate', {userBoard: flattenBoard(game.players['p1'].board), enemyBoard: flattenEnemyBoard(game.players['p2'].board)});
+        game.players['p2'].ws.emit('boardsUpdate', {userBoard: flattenBoard(game.players['p2'].board), enemyBoard: flattenEnemyBoard(game.players['p1'].board)});
 
         if (game.status == 'over') {
             game.players[playerId].ws.emit('gameOver', {winner: 'you'});
@@ -108,7 +105,7 @@ io.on('connection', (socket) => {
 server.listen(process.env.PORT || 3000);
 
 /**
- * Turning 2D array from game logic into array if flat objects for WebDataRocks
+ * Turning 2D array from game logic into array of flat objects for WebDataRocks
  * 
  * @param {*} board 
  * @returns 
@@ -118,6 +115,29 @@ function flattenBoard(board) {
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
             flat.push({row: String(i), col: String(j), state: board[i][j]});
+        }
+    }
+    return flat;
+}
+
+/**
+ * Turning 2D array from game logic into array of flat objects for WebDataRocks.
+ * 
+ * And turning cells with id = 1 to cells with id = 0 for the client side
+ * 
+ * @param {*} board 
+ * @returns 
+ */
+function flattenEnemyBoard(board) {
+    const flat = [];
+    for (let i = 0; i < 10; i++) {
+        for (let j = 0; j < 10; j++) {
+            if (board[i][j] != 1) {
+                flat.push({row: String(i), col: String(j), state: board[i][j]});
+            } else {
+                flat.push({row: String(i), col: String(j), state: 0});
+            }
+            
         }
     }
     return flat;
