@@ -6,6 +6,11 @@ const userBoardPivot = new WebDataRocks({
         dataSource: {
             data: []
         },
+        slice: {
+            rows: [{ uniqueName: "row" }],
+            columns: [{ uniqueName: "col" }],
+            measures: [{ uniqueName: "state", aggregation: "sum" }]
+        },
         tableSizes: {
             columns: [
                 {idx: 0, width: 30},
@@ -45,6 +50,11 @@ const enemyBoardPivot = new WebDataRocks({
     report: {
         dataSource: {
             data: []
+        },
+        slice: {
+            rows: [{ uniqueName: "row" }],
+            columns: [{ uniqueName: "col" }],
+            measures: [{ uniqueName: "state", aggregation: "sum" }]
         },
         tableSizes: {
             columns: [
