@@ -76,7 +76,8 @@ io.on('connection', (socket) => {
         game.players[playerId].status = 'ready';
         if (game.players['p1'].status == 'ready' && game.players['p2'].status == 'ready') {
             game.status = 'playing';
-            io.emit('gameStarted');
+            game.players['p1'].ws.emit('gameStarted', {yourTurn: game.toMove == 'p1'});
+            game.players['p2'].ws.emit('gameStarted', {yourTurn: game.toMove == 'p2'});
         }
     });
 
@@ -87,8 +88,8 @@ io.on('connection', (socket) => {
         shoot(enemyId, row, col);
         game.toMove = enemyId;
 
-        game.players['p1'].ws.emit('boardsUpdate', {userBoard: flattenBoard(game.players['p1'].board), enemyBoard: flattenEnemyBoard(game.players['p2'].board)});
-        game.players['p2'].ws.emit('boardsUpdate', {userBoard: flattenBoard(game.players['p2'].board), enemyBoard: flattenEnemyBoard(game.players['p1'].board)});
+        game.players['p1'].ws.emit('boardsUpdate', {userBoard: flattenBoard(game.players['p1'].board), enemyBoard: flattenEnemyBoard(game.players['p2'].board), yourTurn: game.toMove == 'p1'});
+        game.players['p2'].ws.emit('boardsUpdate', {userBoard: flattenBoard(game.players['p2'].board), enemyBoard: flattenEnemyBoard(game.players['p1'].board), yourTurn: game.toMove == 'p2'});
 
         if (game.status == 'over') {
             game.players[playerId].ws.emit('gameOver', {winner: 'you'});
