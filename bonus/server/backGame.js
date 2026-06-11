@@ -60,10 +60,10 @@ io.on('connection', (socket) => {
     socket.on('toggleCell', ({row, col}) => {
         if (game.Status != 'waiting') { return; }
         
-        const board = game.players[playerId].board;
-        if (board[row][col] == 0) {
+        const tboard = game.players[playerId].board;
+        if (tboard[row][col] == 0) {
             game.players[playerId].board[row][col] = 1;
-        } else if (board[row][col] == 1) {
+        } else if (tboard[row][col] == 1) {
             game.players[playerId].board[row][col] = 0;
         }
         socket.emit('boardUpdate', {
