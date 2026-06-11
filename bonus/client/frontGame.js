@@ -1,43 +1,7 @@
 // creating the table
 const userBoardPivot = new WebDataRocks({
     container: "#userBoard",
-    toolbar: true,
-    report: {
-        dataSource: {
-            data: []
-        },
-        slice: {
-            rows: [{ uniqueName: "row" }],
-            columns: [{ uniqueName: "col" }],
-            measures: [{ uniqueName: "state", aggregation: "sum" }]
-        },
-        tableSizes: {
-            columns: [
-                {idx: 0, width: 30},
-                {idx: 1, width: 30},
-                {idx: 2, width: 30},
-                {idx: 3, width: 30},
-                {idx: 4, width: 30},
-                {idx: 5, width: 30},
-                {idx: 6, width: 30},
-                {idx: 7, width: 30},
-                {idx: 8, width: 30},
-                {idx: 9, width: 30}
-            ],
-            rows: [
-                {idx: 0, width: 30},
-                {idx: 1, width: 30},
-                {idx: 2, width: 30},
-                {idx: 3, width: 30},
-                {idx: 4, width: 30},
-                {idx: 5, width: 30},
-                {idx: 6, width: 30},
-                {idx: 7, width: 30},
-                {idx: 8, width: 30},
-                {idx: 9, width: 30}
-            ]
-        }
-    }
+    toolbar: true
     // customizeCell: function(cell, data) {
     //     cell.style.width = "30px";
     //     cell.style.height = "30px";
@@ -46,43 +10,7 @@ const userBoardPivot = new WebDataRocks({
 
 const enemyBoardPivot = new WebDataRocks({
     container: "#enemyBoard",
-    toolbar: true,
-    report: {
-        dataSource: {
-            data: []
-        },
-        slice: {
-            rows: [{ uniqueName: "row" }],
-            columns: [{ uniqueName: "col" }],
-            measures: [{ uniqueName: "state", aggregation: "sum" }]
-        },
-        tableSizes: {
-            columns: [
-                {idx: 0, width: 30},
-                {idx: 1, width: 30},
-                {idx: 2, width: 30},
-                {idx: 3, width: 30},
-                {idx: 4, width: 30},
-                {idx: 5, width: 30},
-                {idx: 6, width: 30},
-                {idx: 7, width: 30},
-                {idx: 8, width: 30},
-                {idx: 9, width: 30}
-            ],
-            rows: [
-                {idx: 0, width: 30},
-                {idx: 1, width: 30},
-                {idx: 2, width: 30},
-                {idx: 3, width: 30},
-                {idx: 4, width: 30},
-                {idx: 5, width: 30},
-                {idx: 6, width: 30},
-                {idx: 7, width: 30},
-                {idx: 8, width: 30},
-                {idx: 9, width: 30}
-            ]
-        }
-    }
+    toolbar: true
     // customizeCell: function(cell, data) {
     //     cell.style.width = "30px";
     //     cell.style.height = "30px";
@@ -103,6 +31,12 @@ enemyBoardPivot.on('cellclick', function(cell) {
 // socket.io connection
 const socket = io('https://naukma-web-2026.onrender.com');
 
+const cellSize = 30;
+const cellSizes = [];
+for (let i = 0; i < 10; i++) {
+    cellSizes.push({ idx: i, width: cellSize });
+}
+
 const boardReport = (data) => ({
     dataSource: { data },
     slice: {
@@ -115,6 +49,10 @@ const boardReport = (data) => ({
             showGrandTotals: "off",
             showTotals: "off"
         }
+    },
+    tableSizes: {
+        columns: cellSizes,
+        rows: cellSizes
     }
 });
 
