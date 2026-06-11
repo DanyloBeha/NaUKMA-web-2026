@@ -31,10 +31,48 @@ const io = new Server(server, {
 
 app.use(express.static('../client'));
 
+// assigns p1 and p2 to the first two opened tabs
 io.on('connection', (socket) => {
+    let playerId = null;
+    if (!game.players['p1'].ws) {
+        playerId = 'p1';
+    } else if (!game.players['p2'].ws) {
+        playerId = 'p2';
+    } else {
+        socket.disconnect();
+        return;
+    }
+    game.players[playerId].ws = socket;
+
+    let enemyId;
+    if (playerId == 'p1') {
+        enemyId = 'p2';
+    } else {
+        enemyId = 'p1';
+    }
+
+    // own board always will be on the left and enemy board always will be on right
     socket.emit('boardInit', {
-        userBoard: flattenBoard(game.players['p1'].board),
-        enemyBoard: flattenBoard(game.players['p2'].board)
+        userBoard: flattenBoard(game.players[playerId].board),
+        enemyBoard: flattenBoard(game.players[enemyId].board)
+    });
+
+    socket.on('toggleCell', ({row, col}) => {
+        if (game.Status != 'waiting') { return; }
+        
+        const board = game.players[playerId].board;
+        if (board[row][col] == 0) {
+            game.players[playerId].board[row][col] = 1;
+        } else if (board[row][col] == 1) {
+            game.players[playerId].board[row][col] = 0;
+        }
+        socket.emit('boardUpdate', {
+            userBoard: flattenBoard(game.players[playerId].board)
+        });
+    });
+
+    socket.on('disconnect', () => {
+        game.players[playerId].ws = null;
     });
 });
 
