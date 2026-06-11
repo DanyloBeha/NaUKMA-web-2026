@@ -6,6 +6,8 @@
     "start": "node backGame.js"
   },
   "dependencies": {
+    "express": "^4.19.0",
+    "socket.io": "^4.7.0",
     "ws": "^8.18.0"
   }
 }
