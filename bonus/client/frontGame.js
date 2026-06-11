@@ -1,7 +1,7 @@
 // creating the table
 const userBoardPivot = new WebDataRocks({
     container: "#userBoard",
-    toolbar: true
+    toolbar: false
     // customizeCell: function(cell, data) {
     //     cell.style.width = "30px";
     //     cell.style.height = "30px";
@@ -10,7 +10,7 @@ const userBoardPivot = new WebDataRocks({
 
 const enemyBoardPivot = new WebDataRocks({
     container: "#enemyBoard",
-    toolbar: true
+    toolbar: false
     // customizeCell: function(cell, data) {
     //     cell.style.width = "30px";
     //     cell.style.height = "30px";
