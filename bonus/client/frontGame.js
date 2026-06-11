@@ -1,7 +1,6 @@
 // creating the table
 const userBoardPivot = new WebDataRocks({
-    container: "#userBoard",
-    toolbar: true
+    container: "#userBoard"
     // customizeCell: function(cell, data) {
     //     cell.style.width = "30px";
     //     cell.style.height = "30px";
@@ -9,8 +8,7 @@ const userBoardPivot = new WebDataRocks({
 });
 
 const enemyBoardPivot = new WebDataRocks({
-    container: "#enemyBoard",
-    toolbar: true
+    container: "#enemyBoard"
     // customizeCell: function(cell, data) {
     //     cell.style.width = "30px";
     //     cell.style.height = "30px";
@@ -31,14 +29,6 @@ enemyBoardPivot.on('cellclick', function(cell) {
 // socket.io connection
 const socket = io('https://naukma-web-2026.onrender.com');
 
-const cellSize = 30;
-const colSizes = [];
-const rowSizes = [];
-for (let i = 0; i < 10; i++) {
-    cellSizes.push({idx: i, width: cellSize});
-    cellSizes.push({idx: i, height: cellSize});
-}
-
 const boardReport = (data) => ({
     dataSource: { data },
     slice: {
@@ -51,10 +41,6 @@ const boardReport = (data) => ({
             showGrandTotals: "off",
             showTotals: "off"
         }
-    },
-    tableSizes: {
-        columns: colSizes,
-        rows: rowSizes
     }
 });
 
