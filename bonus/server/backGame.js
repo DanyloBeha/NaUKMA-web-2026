@@ -85,8 +85,8 @@ io.on('connection', (socket) => {
         if (game.status != 'playing') { return; }
         if (game.toMove != playerId) { return; }
 
-        shoot(enemyId, row, col);
-        game.toMove = enemyId;
+        const hit = shoot(enemyId, row, col);
+        if (!hit) game.toMove = enemyId;
 
         game.players['p1'].ws.emit('boardsUpdate', {userBoard: flattenBoard(game.players['p1'].board), enemyBoard: flattenEnemyBoard(game.players['p2'].board), yourTurn: game.toMove == 'p1'});
         game.players['p2'].ws.emit('boardsUpdate', {userBoard: flattenBoard(game.players['p2'].board), enemyBoard: flattenEnemyBoard(game.players['p1'].board), yourTurn: game.toMove == 'p2'});
@@ -191,11 +191,12 @@ function fillBoardWithShipsRandom(board) {
  */
 function shoot(targetPlayer, row, col) {
     const cell = game.players[targetPlayer].board[row][col];
-    if (cell == 2 || cell == 3) { return; }
+    if (cell == 2 || cell == 3) { return true; }
 
     // else - shoot and change moveTo to next player
     if (cell == 0) {
         game.players[targetPlayer].board[row][col] = 3;
+        return false;
     } else if (cell == 1) {
         game.players[targetPlayer].board[row][col] = 2;
         if (checkShipSunk(targetPlayer, row, col)) {
@@ -205,6 +206,7 @@ function shoot(targetPlayer, row, col) {
         if (checkGameOver(targetPlayer)) {
             game.status = "over";
         }
+        return true;
     }
 }
 
