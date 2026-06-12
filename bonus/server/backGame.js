@@ -255,7 +255,7 @@ function checkShipSunk(targetPlayer, row, col) {
     for (let coord of shipCoords) {
         for (let dir of directions) {
             const r = coord[0] + dir[0], c = coord[1] + dir[1];
-            if (r >= 0 && r < 10 && c >= 0 && c < 10 && board[r][c] != 0) {
+            if (r >= 0 && r < 10 && c >= 0 && c < 10 && board[r][c] == 0) {
                 game.players[targetPlayer].board[r][c] = 3;
             }
         }
