@@ -11,7 +11,7 @@ function customizeCellFunction(cellStyle, cellData) {
         const value = cellData.value;
         cellStyle.text = "";
         if (value == 1) {
-            cellStyle.style = { "background-color": "gray" };
+            cellStyle.addClass("ship-cell");
         } else if (value == 2) {
             cellStyle.text = "✘";
         } else if (value == 3) {

@@ -18,3 +18,7 @@ h1 {
     height: 300px;
     margin: 10px;
 }
+
+#wdr-pivot-view #wdr-grid-view div.ship-cell {
+    background-color: gray;
+}
