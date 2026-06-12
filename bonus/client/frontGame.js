@@ -16,7 +16,6 @@ function customizeCellFunction(cellStyle, cellData) {
             cellStyle.addClass("hit-cell");
             cellStyle.text = "✘";
         } else if (value == 3) {
-            cellStyle.addClass("miss-cell");
             cellStyle.text = "•";
         }
     }
