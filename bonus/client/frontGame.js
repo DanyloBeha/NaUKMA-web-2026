@@ -10,8 +10,9 @@ function customizeCellFunction(cellStyle, cellData) {
     if (cellData.type == "value") {
         const value = cellData.value;
         cellStyle.text = "";
+        cellStyle.style = { "width": "30px", "height": "30px" };
         if (value == 1) {
-            cellStyle.style = { "background-color": "gray" };
+            cellStyle.style["background-color"] = "gray";
         } else if (value == 2) {
             cellStyle.text = "✘";
         } else if (value == 3) {
