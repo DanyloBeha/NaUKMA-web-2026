@@ -6,27 +6,30 @@ ID 3 = •
 */
 
 // creating the table
-// function customCell(cell, data) {
-//     console.log(data.type, data.value);
-//     if (data.type != 'value') { return; }
-//     switch (Number(data.value)) {
-//         case 0: cell.style.backgroundColor = 'white'; cell.innerHTML = '';  break;
-//         case 1: cell.style.backgroundColor = 'gray'; cell.innerHTML = '';  break;
-//         case 2: cell.style.backgroundColor = 'red'; cell.innerHTML = '✘';  break;
-//         case 3: cell.style.backgroundColor = 'white'; cell.innerHTML = '•';  break;
-//     }
-// }
+function customizeCellFunction(cellStyle, cellData) {
+    if (cellData.type == "value") {
+        const value = cellData.value;
+        cellStyle.text = "";
+        if (value == 1) {
+            cellStyle.style = { "background-color": "gray" };
+        } else if (value == 2) {
+            cellStyle.text = "✘";
+        } else if (value == 3) {
+            cellStyle.text = "•";
+        }
+    }
+}
 
 const userBoardPivot = new WebDataRocks({
     container: "#userBoard",
-    toolbar: false
-    // customizeCell: customCell
+    toolbar: false,
+    customizeCell: customizeCellFunction
 });
 
 const enemyBoardPivot = new WebDataRocks({
     container: "#enemyBoard",
-    toolbar: false
-    // customizeCell: customCell
+    toolbar: false,
+    customizeCell: customizeCellFunction
 });
 
 let gameStatus = 'waiting';
