@@ -115,11 +115,25 @@ function flattenBoard(board) {
     const flat = [];
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
-            flat.push({row: String(i), col: String(j), state: board[i][j]});
+            if (board[i][j] == 0) {
+                flat.push({row: String(i), col: String(j), state: ''});
+            } else if (board[i][j] == 1) {
+                flat.push({row: String(i), col: String(j), state: '🚢'});
+            } else if (board[i][j] == 2) {
+                flat.push({row: String(i), col: String(j), state: '✘'});
+            } else if (board[i][j] == 3) {
+                flat.push({row: String(i), col: String(j), state: '•'});
+            }
+            
         }
     }
     return flat;
 }
+
+// ID 0 = nothing
+// ID 1 = 🚢
+// ID 2 = ✘
+// ID 3 = •
 
 /**
  * Turning 2D array from game logic into array of flat objects for WebDataRocks.
@@ -134,9 +148,15 @@ function flattenEnemyBoard(board) {
     for (let i = 0; i < 10; i++) {
         for (let j = 0; j < 10; j++) {
             if (board[i][j] != 1) {
-                flat.push({row: String(i), col: String(j), state: board[i][j]});
+                if (board[i][j] == 0) {
+                    flat.push({row: String(i), col: String(j), state: ''});
+                } else if (board[i][j] == 2) {
+                    flat.push({row: String(i), col: String(j), state: '✘'});
+                } else if (board[i][j] == 3) {
+                    flat.push({row: String(i), col: String(j), state: '•'});
+                }
             } else {
-                flat.push({row: String(i), col: String(j), state: 0});
+                flat.push({row: String(i), col: String(j), state: ''});
             }
             
         }
