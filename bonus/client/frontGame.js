@@ -13,8 +13,10 @@ function customizeCellFunction(cellStyle, cellData) {
         if (value == 1) {
             cellStyle.addClass("ship-cell");
         } else if (value == 2) {
+            cellStyle.addClass("hit-cell");
             cellStyle.text = "✘";
         } else if (value == 3) {
+            cellStyle.addClass("miss-cell");
             cellStyle.text = "•";
         }
     }

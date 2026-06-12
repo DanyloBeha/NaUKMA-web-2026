@@ -22,3 +22,17 @@ h1 {
 #wdr-pivot-view #wdr-grid-view div.ship-cell {
     background-color: gray;
 }
+
+#wdr-pivot-view #wdr-grid-view div.hit-cell {
+    background-color: gray;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#wdr-pivot-view #wdr-grid-view div.miss-cell {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
