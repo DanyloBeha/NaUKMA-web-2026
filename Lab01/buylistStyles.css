@@ -165,6 +165,10 @@ input {
     margin-bottom: 15px;
 }
 
+.container-list-notBought {
+    min-height: 25px;
+}
+
 .badge {
     background-color: blueviolet;
     color: white;
@@ -196,7 +200,7 @@ input {
     font-weight: 600;
 }
 
-#inEdit {
+.menuItemName:focus {
     border: 1px solid lightblue;
     border-radius: 2px;
     padding: 4px;

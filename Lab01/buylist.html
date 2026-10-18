@@ -7,6 +7,7 @@
         <meta name="author" content="Danylo Beha">
         <title>Buy List</title>
         <link rel="stylesheet" href="buylistStyles.css">
+        <script src="buylist.js" defer></script>
     </head>
 
     <body>
@@ -16,52 +17,13 @@
                 <div class="container-menu-line">
                     <form>
                         <label>
-                            <input type="text" name="item" placeholder="Назва товару">
+                            <input id="newItem" type="text" name="item" placeholder="Назва товару">
                         </label>
                         <button id="addButton" data-toolpit="Додати товар до списку">Додати</button>
                     </form>
                 </div>
 
-                <hr>
-
-                <div class="container-menu-line">
-                    <span class="menuItemName"><s>Помідори</s></span>
-                    <div class="middleBtn">
-                        <span class="menuAmount">2</span>
-                    </div>
-                    <div class="endBtn">
-                        <button class="buyButton" data-toolpit="Позначити, як не куплене">Не куплено</button>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="container-menu-line">
-                    <span class="menuItemName">Печиво</span>
-                    <div class="middleBtn">
-                        <button class="roundButton minusButton" data-toolpit="Зменшити кількість">-</button>
-                        <span class="menuAmount">2</span>
-                        <button class="roundButton plusButton" data-toolpit="Збільшити кількість">+</button>
-                    </div>
-                    <div class="endBtn">
-                        <button class="buyButton" data-toolpit="Позначити, як куплене">Куплено</button>
-                        <button class="delButton" data-toolpit="Вилучити позицію">✖</button>
-                    </div>
-                </div>
-
-                <hr>
-
-                <div class="container-menu-line">
-                    <span class="menuItemName" id="inEdit">Cир</span>
-                    <div class="middleBtn">
-                        <button class="roundButton minusButton" data-toolpit="Зменшити кількість">-</button>
-                        <span class="menuAmount">1</span>
-                        <button class="roundButton plusButton" data-toolpit="Збільшити кількість">+</button>
-                    </div>
-                    <div class="endBtn">
-                        <button class="buyButton" data-toolpit="Позначити, як куплене">Куплено</button>
-                        <button class="delButton" data-toolpit="Вилучити позицію">✖</button>
-                    </div>
+                <div class="container-menu-lines">
                 </div>
             </div>
 
@@ -70,12 +32,8 @@
 
                 <hr>
 
-                <span class="item">Печиво
-                    <span class="amount">2</span>
-                </span>
-                <span class="item">Сир
-                    <span class="amount">1</span>
-                </span>
+                <div class="container-list-notBought">
+                </div>
 
                 <hr>
 
@@ -83,9 +41,9 @@
 
                 <hr>
 
-                <span class="item">Помідори
-                    <span class="amount">2</span>
-                </span>
+                <div class="container-list-bought">
+
+                </div>
             </div>
         </div>
 
